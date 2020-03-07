@@ -1,0 +1,110 @@
+import java.util.*;
+import  org.apache.log4j.*;
+
+class SimpleInterest{
+public double calculate(double principle,double time, double rate) {
+double simpleinterest = (principle * time * rate)/100;
+return simpleinterest;
+}
+}
+
+class CompoundInterest {
+public double calculate(double principle, double time, double rate) {
+    double amount = principle * (Math.pow((1 + rate / 100), time));
+    double compoundinterest = amount - principle;
+    return compoundinterest;
+   }
+}
+
+public class Interests {
+
+public static void main(String[] args) {
+// TODO Auto-generated method stub
+final Logger logger = Logger.getLogger(Interests.class);
+
+double simple,compound;
+double principle,time,rate;
+Scanner sc = new Scanner(System.in);
+System.out.println("enter principle time and rate");
+principle = sc.nextDouble();
+time = sc.nextDouble();
+rate = sc.nextDouble();
+
+SimpleInterest simpleinterest = new SimpleInterest();
+simple = simpleinterest.calculate(principle,time,rate);
+
+CompoundInterest compoundinterest = new CompoundInterest();
+compound = compoundinterest.calculate(principle,time,rate);
+
+logger.info("simple interest is"+simple);
+logger.info("compound interest is"+compound);
+sc.close();
+}
+
+}
+2.Construction materials:
+code:
+
+import java.util.*;
+import  org.apache.log4j.*;
+
+class StandardMaterial{
+public double cost(double area){
+double cost = area * 1200;
+return cost;
+}
+}
+class AboveStandardMaterial{
+public double cost(double area){
+double cost = area * 1500;
+return cost;
+}
+}
+class HighStandardMaterial{
+public double cost(double area){
+double cost = area * 1800;
+return cost;
+}
+}
+class HighStandardMaterialAndAutomation{
+public double cost(double area){
+double cost = area * 2500;
+return cost;
+}
+}
+public class ConstructionCost {
+public static void main(String args[]) {
+final Logger logger = Logger.getLogger(ConstructionCost.class);
+
+StandardMaterial standardmaterial=new StandardMaterial();
+AboveStandardMaterial abovestandardmaterial=new AboveStandardMaterial();
+HighStandardMaterial highstandardmaterial=new HighStandardMaterial();
+HighStandardMaterialAndAutomation highstandardmaterialandautomation =new HighStandardMaterialAndAutomation();
+Scanner sc=new Scanner(System.in);
+System.out.println("1.standard material  2.above standard material 3.high standard material");
+int option=sc.nextInt();
+System.out.println("Enter the area in square feets");
+double area=sc.nextDouble();
+double cost=0.0;
+switch(option) {
+case 1:
+cost=standardmaterial.cost(area);
+break;
+case 2:
+cost=abovestandardmaterial.cost(area);
+break;
+case 3:
+System.out.println("1.need a fully automated home  2.do not need a fully automated home");
+int automation=sc.nextInt();
+if(automation ==1) {
+cost=highstandardmaterialandautomation.cost(area);
+break;
+}
+else {
+cost=highstandardmaterial.cost(area);
+break;
+}
+}
+logger.info("Cost of the Construction materials is "+cost);
+}
+}
